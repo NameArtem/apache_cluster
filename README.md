@@ -111,6 +111,8 @@ mv hadoop-3.2.1 /opt/hadoop3
 chmod 775 hadoop3
 ```
 
+![](/img/hadoop_dwn.png)
+
 
 3.Добавляем переменные среды в `.bashrc` $HADOOP_HOME
 ```bash
@@ -141,6 +143,8 @@ export HADOOP_YARN_HOME=$HADOOP_HOME
 * hdfs-site.xml
 * mapred-site.xml
 * yarn-site.xml
+
+![](/img/hadoop_etc.png)
 
 5. Добавляем имена хостов в файл `workers` (в hadoop2: masters, slaves)
 ```
@@ -233,6 +237,8 @@ mv spark-3.0.0-bin-hadoop3.2 /opt/spark3
 chmod 775 spark3
 ```
 
+![](/img/spark_dwn.png)
+
 2. Добавляем переменные среды в `.bashrc`
 ```bash
 export SPARK_HOME=/opt/spark3
@@ -262,6 +268,9 @@ PYSPARK_PYTHON=/usr/bin/python3
 PYSPARK_DRIVER_PYTHON=/usr/bin/python3
 ```
 
+6. Расположение адресов в SPARK
+
+![](/img/spark_addrs.png)
 
 --------------------
 
@@ -269,6 +278,10 @@ PYSPARK_DRIVER_PYTHON=/usr/bin/python3
 * `start-master.sh`
 * `start-slave.sh spark://cnt-cls-m1:7070`  (выполнить на каждой ноде)
 * Для тестирования работоспособноси можно запустить в командной строке pyspark
+
+![](/img/spark_running.png)
+
+
 
 ------------------
 
