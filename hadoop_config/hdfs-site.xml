@@ -1,0 +1,51 @@
+<configuration>
+    <property>
+        <name>dfs.namenode.http-address</name>
+        <value>pub-cnt-cls-m1:50070</value>
+        <description> Адрес доступа до NameNode (из публичной сети) </description>
+    </property>
+    <property>
+        <name>dfs.namenode.secondary.http-address</name>
+        <valuep>ub-cnt-cls-m2:50090</value>
+        <description>  Адрес доступа до Secondary NameNode (из публичной сети) </description>
+    </property>
+    <property>
+        <name>dfs.replication</name>
+        <value>3</value>
+        <description> Фактор репликации </description>
+    </property>
+    <property>
+        <name>dfs.namenode.name.dir</name>
+        <value>file:///opt/hadoop3/hdfs/name</value>
+        <description> Расположение NameNode </description>
+    </property>
+    <property>
+        <name>dfs.datanode.data.dir</name>
+        <value>file:///opt/hadoop3/hdfs/data</value>
+        <description> Расположение DataNode </description>
+    </property>
+    <property>
+        <name>dfs.namenode.checkpoint.dir</name>
+        <value>file:///opt/hadoop3/hdfs/namesecondary</value>
+        <description>  check point </description>
+    </property>
+    <property>
+        <name>dfs.webhdfs.enabled</name>
+        <value>true</value>
+    </property>
+    <property>
+        <name>dfs.stream-buffer-size</name>
+        <value>131072</value>
+        <description> buffer </description>
+    </property>
+    <property>
+        <name>dfs.namenode.checkpoint.period</name>
+        <value>3600</value>
+        <description> duration </description>
+    </property>
+    <property>
+        <name>dfs.permissions</name>
+        <value>false</value>
+        <description>Отключение проверки безопасности в Hadoop, что часто используется при разработке</description>
+    </property>
+</configuration>

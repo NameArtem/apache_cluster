@@ -1,0 +1,6 @@
+SPARK_LOCAL_IP=cnt-cls-m1
+SPARK_MASTER_IP=pub-cnt-cls-m1
+SPARK_MASTER_HOST=cnt-cls-m1 
+SPARK_MASTER_PORT=7070
+PYSPARK_PYTHON=/usr/bin/python3
+PYSPARK_DRIVER_PYTHON=/usr/bin/python3
