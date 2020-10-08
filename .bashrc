@@ -14,6 +14,7 @@ alias mc='mc -S darkfar'
 alias mcedit='mcedit -S darkfar'
 alias mcview='mcview -S darkfar'
 alias mcdiff='mcdiff -S darkfar'
+alias hist='history'
 
 
 # npn proxy
