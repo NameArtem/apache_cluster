@@ -2,6 +2,31 @@
 
 > Репозиторий для описания процесса установки кластера для продуктов Apache Big Data
 
+Карта развития данного репозитория
+
+- [x] Apache Hadoop
+- [x] Apache Spark
+- [x] JupyterHub
+- [x] JupyterKernel
+- [ ] Ansible
+- [ ] Динамическое ядро для JupyterHub
+- [ ] JupyterHub и Scala Kernel
+- [ ] Apache Drill / Apache Hive (+ описание приемуществ и отличий) (+ Hue)
+- [ ] Apache AirFlow
+- [ ] HopsWorks
+- [ ] MongoDB / PostgreSQL
+- [ ] Kafka / Flume
+- [ ] Sqoop
+- [ ] Oozie
+- [ ] Apache Zookeeper
+- [ ] Apache Livy
+- [ ] Разработка среды мониторинга за кластером (проект)
+- [ ] Dagster
+- [ ] Apache Ignite (для Apache Spark)
+- [ ] Docker для зоопарка Apache (собираем все в контейнеры)
+- [ ] Мониторинг за контейнерами
+- [ ] Apache Mahout
+
 
 # Содержание
 
