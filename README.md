@@ -407,11 +407,11 @@ adduser apache sudo
 ```
 
 ```shell script
-mkdir $HOME/{QWE_kafka,QWE_zookeeper} ; \
+mkdir $HOME/{kafka,zookeeper} ; \
 wget https://downloads.apache.org/kafka/2.5.0/kafka_2.12-2.5.0.tgz ; \
 wget https://downloads.apache.org/zookeeper/zookeeper-3.6.2/apache-zookeeper-3.6.2-bin.tar.gz ; \
-tar -zxf kafka_2.12-2.5.0.tgz -C $HOME/QWE_kafka --strip=1 ; \
-tar -zxf apache-zookeeper-3.6.2-bin.tar.gz -C $HOME/QWE_zookeeper --strip=1
+tar -zxf kafka_2.12-2.5.0.tgz -C $HOME/kafka --strip=1 ; \
+tar -zxf apache-zookeeper-3.6.2-bin.tar.gz -C $HOME/zookeeper --strip=1
 ```
 
 ```shell script
@@ -498,6 +498,8 @@ kafka/bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-fact
     .set('spark.jars', '/usr/local/spark/jars/kafka-clients-0.10.2.2.jar') \
     .set('spark.jars.packages', 'org.apache.spark:spark-sql-kafka-0-10_2.11:2.4.5') \
 ```
+
+### example use
 
 ```python
 df_to_topic = df \
