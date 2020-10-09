@@ -397,6 +397,122 @@ c.YarnSpawner.environment = {
 
 ------------------------------
 
+## Apache Kafka & Zookeeper
+
+### Установка 
+
+```shell script
+adduser apache
+adduser apache sudo
+```
+
+```shell script
+mkdir $HOME/{kafka,zookeeper} ; \
+wget https://downloads.apache.org/kafka/2.5.0/kafka_2.12-2.5.0.tgz ; \
+wget https://downloads.apache.org/zookeeper/zookeeper-3.6.2/apache-zookeeper-3.6.2-bin.tar.gz ; \
+tar -zxf kafka_2.12-2.5.0.tgz -C $HOME/kafka --strip=1 ; \
+tar -zxf apache-zookeeper-3.6.2-bin.tar.gz -C $HOME/zookeeper --strip=1
+```
+
+```shell script
+vim $HOME/zookeeper/conf/zoo.cfg
+
+tickTime=2000
+dataDir=/home/apache/template
+clientPort=2181
+host.name=35.230.42.114
+maxClientCnxns=60
+```
+
+```shell script
+vim $HOME/kafka/config/server.properties
+
+broker.id=0
+listeners=PLAINTEXT://:9092
+advertised.listeners=PLAINTEXT://35.230.42.114:9092
+num.network.threads=3
+zookeeper.connect=35.230.42.114:2181
+message.max.bytes=1994857600
+max.message.bytes=1994857600
+#message.max.bytes=1702390132
+```
+
+### Создаем systemd service
+```shell script
+cd /etc/systemd/system
+touch kafka.service zookeeper.service 
+```
+### Kafka
+```shell script
+[Unit]
+Requires=zookeeper.service
+After=zookeeper.service
+
+[Service]
+Type=simple
+User=apache
+ExecStart=/bin/sh -c '/home/apache/kafka/bin/kafka-server-start.sh /home/apache/kafka/config/server.properties > /home/apache/kafka.log 2>&1'
+ExecStop=/home/apache/kafka/bin/kafka-server-stop.sh
+Restart=on-abnormal
+
+[Install]
+WantedBy=multi-user.target
+```
+
+
+### Zookeeper
+```shell script
+[Unit]
+Requires=network.target
+After=network.target
+
+[Service]
+Type=forking
+User=apache
+ExecStart=/home/apache/zookeeper/bin/zkServer.sh start /home/apache/zookeeper/conf/zoo.cfg
+ExecStop=/home/apache/zookeeper/bin/zkServer.sh stop /home/apache/zookeeper/conf/zoo.cfg
+ExecReload=/home/apache/zookeeper/bin/zkServer.sh restart /home/apache/zookeeper/conf/zoo.cfg
+Restart=on-abnormal
+TimeoutSec=30
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
+
+### run services
+```shell script
+systemctl daemon-reload
+sudo systemctl start zookeeper.service
+sudo systemctl start kafka.service
+```
+
+### Create topic
+```shell script
+kafka/bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 2 --topic HeadHunterETL
+```
+
+
+### + spark-conf for use kafka streaming
+```python
+    .set('spark.jars', '/usr/local/spark/jars/kafka-clients-0.10.2.2.jar') \
+    .set('spark.jars.packages', 'org.apache.spark:spark-sql-kafka-0-10_2.11:2.4.5') \
+```
+
+### example use
+
+```python
+df_to_topic = df \
+    .selectExpr("to_json(struct(*)) AS value") \
+    .writeStream \
+    .format("kafka") \
+    .option("kafka.bootstrap.servers", BOOTSTRAP_SERVER) \
+    .option("topic", TOPIC_NAME) \
+    .start()
+```
+
+------------------------------
+
 ## Команды
 
 Можно написать себе команды для быстрого старта - перезагрузки, по примеру
