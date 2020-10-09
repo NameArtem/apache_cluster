@@ -22,7 +22,7 @@
 - [x] Apache Zookeeper (установка)
 - [ ] Apache Zookeeper tutorial
 - [ ] Apache Livy
-- [ ] Разработка среды мониторинга за кластером (проект)
+- [ ] Разработка среды мониторинга за кластером (проект) (Zabbix, Graylog или ?)
 - [ ] Dagster
 - [ ] Apache Ignite (для Apache Spark)
 - [ ] Docker для зоопарка Apache (собираем все в контейнеры)
