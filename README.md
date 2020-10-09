@@ -15,10 +15,12 @@
 - [ ] Apache AirFlow
 - [ ] HopsWorks
 - [ ] MongoDB / PostgreSQL
-- [ ] Kafka / Flume
+- [x] Kafka (но добавить tutorial)
+- [ ] Flume
 - [ ] Sqoop
 - [ ] Oozie
-- [ ] Apache Zookeeper
+- [x] Apache Zookeeper (установка)
+- [ ] Apache Zookeeper tutorial
 - [ ] Apache Livy
 - [ ] Разработка среды мониторинга за кластером (проект)
 - [ ] Dagster
